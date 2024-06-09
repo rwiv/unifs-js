@@ -2,11 +2,26 @@
   "name": "unifs-js",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "basic-ftp": "^5.0.5",
+    "fs-extra": "^11.2.0",
+    "mime": "^4.0.3",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0",
+    "utils-js": "git+https://github.com/rwiv/utils-js.git#1.0.0",
+    "webdav": "^5.6.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^20.14.2"
+  }
 }

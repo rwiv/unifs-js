@@ -1,0 +1,14 @@
+{
+  "baseDir": "",
+  "webdav": {
+    "host": "",
+    "username": "",
+    "password": ""
+  },
+  "ftp": {
+    "host": "",
+    "port": 0,
+    "user": "",
+    "password": ""
+  }
+}
