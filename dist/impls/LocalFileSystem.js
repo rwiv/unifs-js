@@ -46,13 +46,7 @@ export class LocalFileSystem extends AbstractFileSystem {
     ensureDir(path) {
         return fs.ensureDir(path);
     }
-    getBuffer(path) {
-        return fs.readFile(path);
-    }
     getReadable(path) {
-        return this.readStream(path);
-    }
-    readStream(path) {
         return fs.createReadStream(path);
     }
     async rename(src, dest, overwrite) {

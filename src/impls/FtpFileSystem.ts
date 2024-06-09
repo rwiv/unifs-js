@@ -4,7 +4,6 @@ import mime from "mime";
 import {AbstractFileSystem} from "../AbstractFileSystem.js";
 import {getDirPath, getFilename} from "utils-js/path";
 import {getFirstElem} from "utils-js/list";
-import {readableToBuffer} from "utils-js/buffer";
 import {PassThrough} from "node:stream";
 import {Readable} from "stream";
 import {FileInfo} from "../types.js";
@@ -56,11 +55,6 @@ export class FtpFileSystem extends AbstractFileSystem {
 
   ensureDir = (path: string) => this.connect(async client => {
     return client.ensureDir(path);
-  });
-
-  protected getBuffer = (path: string) => this.connect(async client => {
-    const rs = this.getReadable(path);
-    return readableToBuffer(rs);
   });
 
   protected getReadable(path: string) {

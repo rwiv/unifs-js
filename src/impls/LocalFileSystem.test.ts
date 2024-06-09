@@ -14,7 +14,7 @@ describe("test", async () => {
   it("test fs", async () => {
     const p1 = fs.join(getAssetPath(), "test", "captcha", "image.jpg");
     const p2 = fs.join(getAssetPath(), "test", "image2.jpg");
-    const { buffer } = await fs.get(p1);
+    const buffer = await fs.readBuffer(p1);
     await fs.write(p2, buffer, true);
   });
 

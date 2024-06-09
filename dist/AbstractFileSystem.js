@@ -15,34 +15,23 @@ export class AbstractFileSystem {
             }
         }
     }
-    async readBuffer(path) {
-        const rs = this.getReadable(path);
-        return await readableToBuffer(rs);
-    }
-    async readText(path) {
-        const rs = this.getReadable(path);
-        const buffer = await readableToBuffer(rs);
-        return buffer.toString("utf-8");
-    }
-    join(...chunks) {
-        return chunks.join("/");
-    }
-    async checkBeforeRead(path) {
+    async readStream(path) {
         const info = await this.head(path);
         if (info.type === "directory") {
             throw Error("file is directory");
         }
-        return info;
+        return this.getReadable(path);
     }
-    async get(path) {
-        const info = await this.checkBeforeRead(path);
-        const buffer = await this.getBuffer(path);
-        return { info, buffer };
+    async readBuffer(path) {
+        const rs = await this.readStream(path);
+        return readableToBuffer(rs);
     }
-    async read(path) {
-        const info = await this.checkBeforeRead(path);
-        const stream = this.getReadable(path);
-        return { info, stream };
+    async readText(path) {
+        const buffer = await this.readBuffer(path);
+        return buffer.toString("utf-8");
+    }
+    join(...chunks) {
+        return chunks.join("/");
     }
     async write(path, data, overwrite) {
         if (!overwrite) {

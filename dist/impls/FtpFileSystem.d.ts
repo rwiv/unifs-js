@@ -22,7 +22,6 @@ export declare class FtpFileSystem extends AbstractFileSystem {
     head: (path: string) => Promise<FileInfo>;
     list: (path: string) => Promise<FileInfo[]>;
     ensureDir: (path: string) => Promise<void>;
-    protected getBuffer: (path: string) => Promise<Buffer>;
     protected getReadable(path: string): PassThrough;
     protected writeFile: (path: string, data: Readable | Buffer | string) => Promise<void>;
     protected removeFile: (path: string) => Promise<void>;

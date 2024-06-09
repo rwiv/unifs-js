@@ -21,7 +21,6 @@ export declare class WebdavFileSystem extends AbstractFileSystem {
     head(path: string): Promise<FileInfo>;
     list(path: string): Promise<FileInfo[]>;
     ensureDir(path: string): Promise<void>;
-    protected getBuffer(path: string): Promise<Buffer>;
     protected getReadable(path: string): Readable;
     protected writeFile(path: string, data: Readable | Buffer | string): Promise<void>;
     protected removeFile(path: string): Promise<void>;

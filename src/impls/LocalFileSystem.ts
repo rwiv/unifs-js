@@ -56,15 +56,7 @@ export class LocalFileSystem extends AbstractFileSystem  {
     return fs.ensureDir(path);
   }
 
-  protected getBuffer(path: string): Promise<Buffer> {
-    return fs.readFile(path);
-  }
-
   protected getReadable(path: string): Readable {
-    return this.readStream(path);
-  }
-
-  readStream(path: string) {
     return fs.createReadStream(path);
   }
 

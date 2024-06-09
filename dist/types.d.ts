@@ -7,10 +7,9 @@ export interface FileSystem {
     head(path: string): Promise<FileInfo>;
     list(path: string): Promise<FileInfo[]>;
     ensureDir(path: string): Promise<void>;
-    read(path: string): Promise<FileStream>;
+    readStream(path: string): Promise<Readable>;
     readBuffer(path: string): Promise<Buffer>;
     readText(path: string): Promise<string>;
-    get(path: string): Promise<FileBuffer>;
     write(path: string, data: Readable | Buffer | string, overwrite: boolean): Promise<void>;
     remove(path: string): Promise<FileInfo>;
 }
@@ -21,12 +20,4 @@ export interface FileInfo {
     mime: string | undefined;
     size: number;
     lastModified: string | undefined;
-}
-export interface FileStream {
-    info: FileInfo;
-    stream: Readable;
-}
-export interface FileBuffer {
-    info: FileInfo;
-    buffer: Buffer;
 }

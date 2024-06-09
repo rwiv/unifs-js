@@ -1,4 +1,4 @@
-import {FileBuffer, FileInfo, FileStream, FileSystem} from "./types.js";
+import {FileInfo, FileSystem} from "./types.js";
 import {readableToBuffer} from "utils-js/buffer";
 import {FileNotFoundException} from "./errors.js";
 import {Readable} from "stream";
@@ -9,7 +9,6 @@ export abstract class AbstractFileSystem implements FileSystem {
   abstract list(path: string): Promise<FileInfo[]>;
   abstract ensureDir(path: string): Promise<void>;
 
-  protected abstract getBuffer(path: string): Promise<Buffer>;
   protected abstract getReadable(path: string): Readable;
   protected abstract writeFile(path: string, data: Readable | Buffer | string, overwrite: boolean): Promise<void>;
   protected abstract removeFile(path: string): Promise<void>;
@@ -28,39 +27,26 @@ export abstract class AbstractFileSystem implements FileSystem {
     }
   }
 
+  public async readStream(path: string): Promise<Readable> {
+    const info = await this.head(path);
+    if (info.type === "directory") {
+      throw Error("file is directory");
+    }
+    return this.getReadable(path);
+  }
+
   async readBuffer(path: string): Promise<Buffer> {
-    const rs = this.getReadable(path);
-    return await readableToBuffer(rs);
+    const rs = await this.readStream(path);
+    return readableToBuffer(rs);
   }
 
   async readText(path: string): Promise<string> {
-    const rs = this.getReadable(path);
-    const buffer = await readableToBuffer(rs);
+    const buffer = await this.readBuffer(path)
     return buffer.toString("utf-8");
   }
 
   join(...chunks: string[]) {
     return chunks.join("/");
-  }
-
-  protected async checkBeforeRead(path: string) {
-    const info = await this.head(path);
-    if (info.type === "directory") {
-      throw Error("file is directory");
-    }
-    return info;
-  }
-
-  public async get(path: string): Promise<FileBuffer> {
-    const info = await this.checkBeforeRead(path);
-    const buffer = await this.getBuffer(path);
-    return { info, buffer };
-  }
-
-  public async read(path: string): Promise<FileStream> {
-    const info = await this.checkBeforeRead(path);
-    const stream = this.getReadable(path);
-    return { info, stream };
   }
 
   public async write(path: string, data: Readable | Buffer | string, overwrite: boolean) {

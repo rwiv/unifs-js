@@ -44,9 +44,6 @@ export class WebdavFileSystem extends AbstractFileSystem {
     ensureDir(path) {
         return this.webdavClient().createDirectory(path, { recursive: true });
     }
-    async getBuffer(path) {
-        return await this.webdavClient().getFileContents(path, { format: "binary" });
-    }
     getReadable(path) {
         return this.webdavClient().createReadStream(path);
     }
