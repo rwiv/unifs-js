@@ -1,7 +1,7 @@
-import {Readable} from "stream";
-import {FileBuffer, FileInfo, FileStream, FileSystem} from "./fs_types.js";
-import {streamToBuffer} from "utils-js/buffer";
+import {FileBuffer, FileInfo, FileStream, FileSystem} from "./types.js";
+import {readableToBuffer} from "utils-js/buffer";
 import {FileNotFoundException} from "./errors.js";
+import {Readable} from "stream";
 
 export abstract class AbstractFileSystem implements FileSystem {
 
@@ -28,9 +28,14 @@ export abstract class AbstractFileSystem implements FileSystem {
     }
   }
 
-  async readToString(path: string): Promise<string> {
+  async readBuffer(path: string): Promise<Buffer> {
     const rs = this.getReadable(path);
-    const buffer = await streamToBuffer(rs);
+    return await readableToBuffer(rs);
+  }
+
+  async readText(path: string): Promise<string> {
+    const rs = this.getReadable(path);
+    const buffer = await readableToBuffer(rs);
     return buffer.toString("utf-8");
   }
 

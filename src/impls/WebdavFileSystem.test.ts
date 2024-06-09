@@ -20,7 +20,7 @@ function getAssetPath() {
 describe("test", async () => {
 
   const confPath = path.resolve(getRootPath(), "tests", "test_conf.json")
-  const conf: TestConf = JSON.parse(await new LocalFileSystem().readToString(confPath));
+  const conf: TestConf = JSON.parse(await new LocalFileSystem().readText(confPath));
   const fs = new WebdavFileSystem(conf.webdav);
 
   it("test", () => {

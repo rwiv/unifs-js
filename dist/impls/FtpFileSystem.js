@@ -2,35 +2,21 @@ import { Client } from "basic-ftp";
 import mime from "mime";
 import { AbstractFileSystem } from "../AbstractFileSystem.js";
 import { getDirPath, getFilename } from "utils-js/path";
-import { first } from "utils-js/array";
-import { toBuffer } from "utils-js/buffer";
+import { getFirstElem } from "utils-js/list";
+import { readableToBuffer } from "utils-js/buffer";
 import { PassThrough } from "node:stream";
 import { Readable } from "stream";
 import { checkNull } from "utils-js/null";
-import { FileNotFoundException } from "../common/errors.js";
+import { FileNotFoundException } from "../errors.js";
 export class FtpFileSystem extends AbstractFileSystem {
     config;
     constructor(config) {
         super();
         this.config = config;
     }
-    exists = (path) => this.connect(async (client) => {
-        try {
-            await this.head(path);
-            return true;
-        }
-        catch (e) {
-            if (e instanceof FileNotFoundException) {
-                return false;
-            }
-            else {
-                throw e;
-            }
-        }
-    });
     head = (path) => this.connect(async (client) => {
         const children = await this.list(getDirPath(path, "/"));
-        const info = first(children, file => file.path === path);
+        const info = getFirstElem(children, file => file.path === path);
         if (info === undefined) {
             throw new FileNotFoundException("not found file");
         }
@@ -56,7 +42,7 @@ export class FtpFileSystem extends AbstractFileSystem {
     });
     getBuffer = (path) => this.connect(async (client) => {
         const rs = this.getReadable(path);
-        return toBuffer(rs);
+        return readableToBuffer(rs);
     });
     getReadable(path) {
         const stream = new PassThrough();

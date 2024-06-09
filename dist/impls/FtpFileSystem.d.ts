@@ -3,7 +3,7 @@
 import { AbstractFileSystem } from "../AbstractFileSystem.js";
 import { PassThrough } from "node:stream";
 import { Readable } from "stream";
-import { FileInfo } from "../fs_types.js";
+import { FileInfo } from "../types.js";
 export interface FtpError {
     name: string;
     code: number;
@@ -19,7 +19,6 @@ export interface FtpConfig {
 export declare class FtpFileSystem extends AbstractFileSystem {
     readonly config: FtpConfig;
     constructor(config: FtpConfig);
-    exists: (path: string) => Promise<boolean>;
     head: (path: string) => Promise<FileInfo>;
     list: (path: string) => Promise<FileInfo[]>;
     ensureDir: (path: string) => Promise<void>;

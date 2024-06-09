@@ -1,8 +1,27 @@
-import { toBuffer } from "utils-js/buffer";
+import { readableToBuffer } from "utils-js/buffer";
+import { FileNotFoundException } from "./errors.js";
 export class AbstractFileSystem {
-    async readToString(path) {
+    async exists(path) {
+        try {
+            await this.head(path);
+            return true;
+        }
+        catch (e) {
+            if (e instanceof FileNotFoundException) {
+                return false;
+            }
+            else {
+                throw e;
+            }
+        }
+    }
+    async readBuffer(path) {
         const rs = this.getReadable(path);
-        const buffer = await toBuffer(rs);
+        return await readableToBuffer(rs);
+    }
+    async readText(path) {
+        const rs = this.getReadable(path);
+        const buffer = await readableToBuffer(rs);
         return buffer.toString("utf-8");
     }
     join(...chunks) {

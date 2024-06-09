@@ -5,13 +5,10 @@ import mime from "mime";
 import { AbstractFileSystem } from "../AbstractFileSystem.js";
 import { getFilename } from "utils-js/path";
 import { checkNull } from "utils-js/null";
-import { FileNotFoundException } from "../common/errors.js";
+import { FileNotFoundException } from "../errors.js";
 export class LocalFileSystem extends AbstractFileSystem {
     join(...chunks) {
         return path.resolve(...chunks);
-    }
-    async exists(path) {
-        return fs.exists(path);
     }
     async head(path) {
         try {

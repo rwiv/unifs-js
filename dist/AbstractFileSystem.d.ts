@@ -1,9 +1,8 @@
 /// <reference types="node" resolution-mode="require"/>
 /// <reference types="node" resolution-mode="require"/>
+import { FileBuffer, FileInfo, FileStream, FileSystem } from "./types.js";
 import { Readable } from "stream";
-import { FileBuffer, FileInfo, FileStream, FileSystem } from "./fs_types.js";
 export declare abstract class AbstractFileSystem implements FileSystem {
-    abstract exists(path: string): Promise<boolean>;
     abstract head(path: string): Promise<FileInfo>;
     abstract list(path: string): Promise<FileInfo[]>;
     abstract ensureDir(path: string): Promise<void>;
@@ -12,7 +11,9 @@ export declare abstract class AbstractFileSystem implements FileSystem {
     protected abstract writeFile(path: string, data: Readable | Buffer | string, overwrite: boolean): Promise<void>;
     protected abstract removeFile(path: string): Promise<void>;
     protected abstract removeDirRecursive(path: string): Promise<void>;
-    readToString(path: string): Promise<string>;
+    exists(path: string): Promise<boolean>;
+    readBuffer(path: string): Promise<Buffer>;
+    readText(path: string): Promise<string>;
     join(...chunks: string[]): string;
     protected checkBeforeRead(path: string): Promise<FileInfo>;
     get(path: string): Promise<FileBuffer>;

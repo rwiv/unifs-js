@@ -3,7 +3,7 @@ import path from "path";
 import fs from "fs-extra";
 import mime from "mime";
 import {AbstractFileSystem} from "../AbstractFileSystem.js";
-import {FileInfo} from "../fs_types.js";
+import {FileInfo} from "../types.js";
 import {getFilename} from "utils-js/path";
 import {checkNull} from "utils-js/null";
 import {FileNotFoundException} from "../errors.js";

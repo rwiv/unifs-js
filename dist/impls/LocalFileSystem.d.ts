@@ -4,10 +4,9 @@
 import { Readable } from "stream";
 import fs from "fs-extra";
 import { AbstractFileSystem } from "../AbstractFileSystem.js";
-import { FileInfo } from "../fs_types.js";
+import { FileInfo } from "../types.js";
 export declare class LocalFileSystem extends AbstractFileSystem {
     join(...chunks: string[]): string;
-    exists(path: string): Promise<boolean>;
     head(path: string): Promise<FileInfo>;
     list(path: string): Promise<FileInfo[]>;
     ensureDir(path: string): Promise<void>;

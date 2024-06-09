@@ -1,7 +1,7 @@
 import { createClient } from "webdav";
 import { AbstractFileSystem } from "../AbstractFileSystem.js";
 import { checkNull } from "utils-js/null";
-import { FileNotFoundException } from "../common/errors.js";
+import { FileNotFoundException } from "../errors.js";
 export class WebdavFileSystem extends AbstractFileSystem {
     config;
     constructor(config) {

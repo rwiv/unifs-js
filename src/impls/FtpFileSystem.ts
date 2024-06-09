@@ -4,10 +4,10 @@ import mime from "mime";
 import {AbstractFileSystem} from "../AbstractFileSystem.js";
 import {getDirPath, getFilename} from "utils-js/path";
 import {getFirstElem} from "utils-js/list";
-import {streamToBuffer} from "utils-js/buffer";
+import {readableToBuffer} from "utils-js/buffer";
 import {PassThrough} from "node:stream";
 import {Readable} from "stream";
-import {FileInfo} from "../fs_types.js";
+import {FileInfo} from "../types.js";
 import {checkNull} from "utils-js/null";
 import {FileNotFoundException} from "../errors.js";
 
@@ -60,7 +60,7 @@ export class FtpFileSystem extends AbstractFileSystem {
 
   protected getBuffer = (path: string) => this.connect(async client => {
     const rs = this.getReadable(path);
-    return streamToBuffer(rs);
+    return readableToBuffer(rs);
   });
 
   protected getReadable(path: string) {

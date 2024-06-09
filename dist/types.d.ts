@@ -8,7 +8,8 @@ export interface FileSystem {
     list(path: string): Promise<FileInfo[]>;
     ensureDir(path: string): Promise<void>;
     read(path: string): Promise<FileStream>;
-    readToString(path: string): Promise<string>;
+    readBuffer(path: string): Promise<Buffer>;
+    readText(path: string): Promise<string>;
     get(path: string): Promise<FileBuffer>;
     write(path: string, data: Readable | Buffer | string, overwrite: boolean): Promise<void>;
     remove(path: string): Promise<FileInfo>;

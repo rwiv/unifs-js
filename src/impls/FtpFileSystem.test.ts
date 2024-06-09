@@ -14,7 +14,7 @@ export interface TestConf {
 describe("test", async () => {
 
   const confPath = path.resolve(getRootPath(), "tests", "test_conf.json")
-  const conf: TestConf = JSON.parse(await new LocalFileSystem().readToString(confPath));
+  const conf: TestConf = JSON.parse(await new LocalFileSystem().readText(confPath));
   const ftp = new FtpFileSystem(conf.ftp);
 
   it("test ftp", async () => {

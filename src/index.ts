@@ -1,4 +1,4 @@
-export * from "./fs_types.js";
+export * from "./types.js";
 export * from "./AbstractFileSystem.js";
 
 export * from "./errors.js";

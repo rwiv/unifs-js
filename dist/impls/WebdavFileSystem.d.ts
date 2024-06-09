@@ -2,7 +2,7 @@
 /// <reference types="node" resolution-mode="require"/>
 import { Readable } from "stream";
 import { AbstractFileSystem } from "../AbstractFileSystem.js";
-import { FileInfo } from "../fs_types.js";
+import { FileInfo } from "../types.js";
 export interface WebdavError {
     status: number;
     statusText: string;
