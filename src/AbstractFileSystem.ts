@@ -1,10 +1,10 @@
 import {Readable} from "stream";
 import {FileBuffer, FileInfo, FileStream, FileSystem} from "./fs_types.js";
-import {toBuffer} from "utils-js/buffer";
+import {streamToBuffer} from "utils-js/buffer";
+import {FileNotFoundException} from "./errors.js";
 
 export abstract class AbstractFileSystem implements FileSystem {
 
-  abstract exists(path: string): Promise<boolean>;
   abstract head(path: string): Promise<FileInfo>;
   abstract list(path: string): Promise<FileInfo[]>;
   abstract ensureDir(path: string): Promise<void>;
@@ -15,9 +15,22 @@ export abstract class AbstractFileSystem implements FileSystem {
   protected abstract removeFile(path: string): Promise<void>;
   protected abstract removeDirRecursive(path: string): Promise<void>;
 
+  async exists(path: string): Promise<boolean> {
+    try {
+      await this.head(path);
+      return true;
+    } catch (e) {
+      if (e instanceof FileNotFoundException) {
+        return false;
+      } else {
+        throw e;
+      }
+    }
+  }
+
   async readToString(path: string): Promise<string> {
     const rs = this.getReadable(path);
-    const buffer = await toBuffer(rs);
+    const buffer = await streamToBuffer(rs);
     return buffer.toString("utf-8");
   }
 

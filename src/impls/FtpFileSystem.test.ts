@@ -2,7 +2,7 @@ import {describe, it} from "vitest";
 import {FtpConfig, FtpFileSystem} from "./FtpFileSystem.js";
 import {WebdavConfig} from "./WebdavFileSystem.js";
 import path from "path";
-import {rootPath} from "utils-js/path";
+import {getRootPath} from "utils-js/path";
 import {LocalFileSystem} from "./LocalFileSystem.js";
 
 export interface TestConf {
@@ -13,7 +13,7 @@ export interface TestConf {
 
 describe("test", async () => {
 
-  const confPath = path.resolve(rootPath(), "tests", "test_conf.json")
+  const confPath = path.resolve(getRootPath(), "tests", "test_conf.json")
   const conf: TestConf = JSON.parse(await new LocalFileSystem().readToString(confPath));
   const ftp = new FtpFileSystem(conf.ftp);
 

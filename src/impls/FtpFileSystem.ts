@@ -3,13 +3,13 @@ import {FileInfo as FileStat} from "basic-ftp";
 import mime from "mime";
 import {AbstractFileSystem} from "../AbstractFileSystem.js";
 import {getDirPath, getFilename} from "utils-js/path";
-import {first} from "utils-js/array";
-import {toBuffer} from "utils-js/buffer";
+import {getFirstElem} from "utils-js/list";
+import {streamToBuffer} from "utils-js/buffer";
 import {PassThrough} from "node:stream";
 import {Readable} from "stream";
 import {FileInfo} from "../fs_types.js";
 import {checkNull} from "utils-js/null";
-import {FileNotFoundException} from "../common/errors.js";
+import {FileNotFoundException} from "../errors.js";
 
 export interface FtpError {
   name: string;
@@ -31,22 +31,9 @@ export class FtpFileSystem extends AbstractFileSystem {
     super();
   }
 
-  exists = (path: string) => this.connect(async client => {
-    try {
-      await this.head(path);
-      return true;
-    } catch (e) {
-      if (e instanceof FileNotFoundException) {
-        return false;
-      } else {
-        throw e;
-      }
-    }
-  });
-
   head = (path: string) => this.connect(async client => {
     const children = await this.list(getDirPath(path, "/"));
-    const info = first(children, file => file.path === path);
+    const info = getFirstElem(children, file => file.path === path);
     if (info === undefined) {
       throw new FileNotFoundException("not found file");
     }
@@ -73,7 +60,7 @@ export class FtpFileSystem extends AbstractFileSystem {
 
   protected getBuffer = (path: string) => this.connect(async client => {
     const rs = this.getReadable(path);
-    return toBuffer(rs);
+    return streamToBuffer(rs);
   });
 
   protected getReadable(path: string) {

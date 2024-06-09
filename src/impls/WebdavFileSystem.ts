@@ -3,7 +3,7 @@ import {Readable} from "stream";
 import {AbstractFileSystem} from "../AbstractFileSystem.js";
 import {FileInfo} from "../fs_types.js";
 import {checkNull} from "utils-js/null";
-import {FileNotFoundException} from "../common/errors.js";
+import {FileNotFoundException} from "../errors.js";
 
 export interface WebdavError {
   status: number;

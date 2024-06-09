@@ -6,7 +6,7 @@ import {AbstractFileSystem} from "../AbstractFileSystem.js";
 import {FileInfo} from "../fs_types.js";
 import {getFilename} from "utils-js/path";
 import {checkNull} from "utils-js/null";
-import {FileNotFoundException} from "../common/errors.js";
+import {FileNotFoundException} from "../errors.js";
 
 interface LfsError {
   errno: number;
@@ -19,10 +19,6 @@ export class LocalFileSystem extends AbstractFileSystem  {
 
   join(...chunks: string[]) {
     return path.resolve(...chunks);
-  }
-
-  async exists(path: string) {
-    return fs.exists(path);
   }
 
   async head(path: string) {
