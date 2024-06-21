@@ -22,7 +22,7 @@ importers:
         version: 4.0.3
       utils-js:
         specifier: git+https://github.com/rwiv/utils-js.git#1.0.0
-        version: git+https://git@github.com:rwiv/utils-js.git#abd1c0abb6c923b5237770afd9e7a6611710a3bc
+        version: https://codeload.github.com/rwiv/utils-js/tar.gz/65e59b72396a7142e85d441a458dbf3ef38b88f0
       webdav:
         specifier: ^5.6.0
         version: 5.6.0
@@ -731,8 +731,8 @@ packages:
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
 
-  bare-events@2.3.1:
-    resolution: {integrity: sha512-sJnSOTVESURZ61XgEleqmP255T6zTYwHPwE4r6SssIh0U9/uDvfpdoJYpVUerJJZH2fueO+CdT8ZT+OC/7aZDA==}
+  bare-events@2.4.2:
+    resolution: {integrity: sha512-qMKFd2qG/36aA4GwvKq8MxnPgCQAmBWmSyLWsJcbn8v03wvIPQ/hG1Ms8bPzndZxMDoHpxez5VOS+gC9Yi24/Q==}
 
   base-64@1.0.0:
     resolution: {integrity: sha512-kwDPIFCGx0NZHog36dj+tHiwP4QMzsZ3AgMViUBKI0+V5n4U0ufTCUMhnQ04diaRI8EX/QcPfql7zlhZ7j4zgg==}
@@ -904,8 +904,8 @@ packages:
   fn.name@1.1.0:
     resolution: {integrity: sha512-GRnmB5gPyJpAhTQdSZTSp9uaPSvl09KoYcMQtsB9rQoOmzs9dH6ffeccH+Z+cv6P68Hu5bC6JjRh4Ah/mHSNRw==}
 
-  foreground-child@3.1.1:
-    resolution: {integrity: sha512-TMKDUnIte6bfb5nWv7V/caI169OHgvwjb7V4WkeUvbQQdjr5rWKqHFiKWb/fcOwB+CzBT+qbWjvj+DVwRskpIg==}
+  foreground-child@3.2.1:
+    resolution: {integrity: sha512-PXUUyLqrR2XCWICfv6ukppP96sdFwWbNEnfEMt7jNsISjMsvaLNinAHNDYyvkyU+SZG2BTSbT5NjG+vZslfGTA==}
     engines: {node: '>=14'}
 
   formdata-polyfill@4.0.10:
@@ -928,8 +928,8 @@ packages:
     resolution: {integrity: sha512-VaUJspBffn/LMCJVoMvSAdmscJyS1auj5Zulnn5UoYcY531UWmdwhRWkcGKnGU93m5HSXP9LP2usOryrBtQowA==}
     engines: {node: '>=16'}
 
-  glob@10.4.1:
-    resolution: {integrity: sha512-2jelhlq3E4ho74ZyVLN03oKdAZVUa6UDZzFLVH1H7dnoax+y9qyaq8zBkfDIggjniU19z0wU18y16jMB2eyVIw==}
+  glob@10.4.2:
+    resolution: {integrity: sha512-GwMlUF6PkPo3Gk21UxkCohOv0PLcIXVtKyLlpEI28R/cO/4eNOdmLk3CMW1wROV/WR/EsZOWAfBbBOqYvs88/w==}
     engines: {node: '>=16 || 14 >=14.18'}
     hasBin: true
 
@@ -1085,6 +1085,9 @@ packages:
   p-limit@5.0.0:
     resolution: {integrity: sha512-/Eaoq+QyLSiXQ4lyYV23f14mZRQcXnxfHrN0vCai+ak9G0pp9iEQukIIZq5NccEvwRB8PUnZT0KsOoDCINS1qQ==}
     engines: {node: '>=18'}
+
+  package-json-from-dist@1.0.0:
+    resolution: {integrity: sha512-dATvCeZN/8wQsGywez1mzHtTlP22H8OEfPrVMLNr4/eGa+ijtLn/6M5f0dY8UKNrC2O9UCU6SSoG3qRKnt7STw==}
 
   path-key@3.1.1:
     resolution: {integrity: sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==}
@@ -1294,8 +1297,8 @@ packages:
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
-  utils-js@git+https://git@github.com:rwiv/utils-js.git#abd1c0abb6c923b5237770afd9e7a6611710a3bc:
-    resolution: {commit: abd1c0abb6c923b5237770afd9e7a6611710a3bc, repo: git@github.com:rwiv/utils-js.git, type: git}
+  utils-js@https://codeload.github.com/rwiv/utils-js/tar.gz/65e59b72396a7142e85d441a458dbf3ef38b88f0:
+    resolution: {tarball: https://codeload.github.com/rwiv/utils-js/tar.gz/65e59b72396a7142e85d441a458dbf3ef38b88f0}
     version: 1.0.0
 
   uuid@9.0.1:
@@ -2440,7 +2443,7 @@ snapshots:
 
   archiver-utils@5.0.2:
     dependencies:
-      glob: 10.4.1
+      glob: 10.4.2
       graceful-fs: 4.2.11
       is-stream: 2.0.1
       lazystream: 1.0.1
@@ -2466,7 +2469,7 @@ snapshots:
 
   balanced-match@1.0.2: {}
 
-  bare-events@2.3.1:
+  bare-events@2.4.2:
     optional: true
 
   base-64@1.0.0: {}
@@ -2651,7 +2654,7 @@ snapshots:
 
   fn.name@1.1.0: {}
 
-  foreground-child@3.1.1:
+  foreground-child@3.2.1:
     dependencies:
       cross-spawn: 7.0.3
       signal-exit: 4.1.0
@@ -2673,12 +2676,13 @@ snapshots:
 
   get-stream@8.0.1: {}
 
-  glob@10.4.1:
+  glob@10.4.2:
     dependencies:
-      foreground-child: 3.1.1
+      foreground-child: 3.2.1
       jackspeak: 3.4.0
       minimatch: 9.0.4
       minipass: 7.1.2
+      package-json-from-dist: 1.0.0
       path-scurry: 1.11.1
 
   graceful-fs@4.2.11: {}
@@ -2818,6 +2822,8 @@ snapshots:
     dependencies:
       yocto-queue: 1.0.0
 
+  package-json-from-dist@1.0.0: {}
+
   path-key@3.1.1: {}
 
   path-key@4.0.0: {}
@@ -2949,7 +2955,7 @@ snapshots:
       queue-tick: 1.0.1
       text-decoder: 1.1.0
     optionalDependencies:
-      bare-events: 2.3.1
+      bare-events: 2.4.2
 
   string-width@4.2.3:
     dependencies:
@@ -3030,7 +3036,7 @@ snapshots:
 
   util-deprecate@1.0.2: {}
 
-  utils-js@git+https://git@github.com:rwiv/utils-js.git#abd1c0abb6c923b5237770afd9e7a6611710a3bc:
+  utils-js@https://codeload.github.com/rwiv/utils-js/tar.gz/65e59b72396a7142e85d441a458dbf3ef38b88f0:
     dependencies:
       archiver: 7.0.1
       chalk: 5.3.0
