@@ -16,7 +16,7 @@
     "basic-ftp": "^5.0.5",
     "fs-extra": "^11.2.0",
     "mime": "^4.0.3",
-    "utils-js": "git+https://github.com/rwiv/utils-js.git#1.0.0",
+    "utils-js": "git+https://github.com/rwiv/utils-js.git#v0.0.1",
     "webdav": "^5.6.0"
   },
   "devDependencies": {
