@@ -1,5 +1,3 @@
-/// <reference types="node" resolution-mode="require"/>
-/// <reference types="node" resolution-mode="require"/>
 import { Readable } from "stream";
 export interface FileSystem {
     join(...chunks: string[]): string;

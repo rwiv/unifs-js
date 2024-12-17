@@ -1,5 +1,3 @@
-/// <reference types="node" resolution-mode="require"/>
-/// <reference types="node" resolution-mode="require"/>
 import { AbstractFileSystem } from "../AbstractFileSystem.js";
 import { PassThrough } from "node:stream";
 import { Readable } from "stream";

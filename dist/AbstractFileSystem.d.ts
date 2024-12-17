@@ -1,5 +1,3 @@
-/// <reference types="node" resolution-mode="require"/>
-/// <reference types="node" resolution-mode="require"/>
 import { FileInfo, FileSystem } from "./types.js";
 import { Readable } from "stream";
 export declare abstract class AbstractFileSystem implements FileSystem {

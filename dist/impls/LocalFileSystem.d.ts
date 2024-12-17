@@ -1,5 +1,3 @@
-/// <reference types="node" resolution-mode="require"/>
-/// <reference types="node" resolution-mode="require"/>
 import { Readable } from "stream";
 import { AbstractFileSystem } from "../AbstractFileSystem.js";
 import { FileInfo } from "../types.js";
